@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
+import MealItem from "./MealItem";
 
 export default function Meals() {
   const [loadedMeals, setLoadedMeals] = useState([]);
@@ -19,7 +20,7 @@ export default function Meals() {
   return (
     <ul className=" grid grid-cols-2 md:grid-cols-3">
       {loadedMeals.map((meal) => (
-        <li key={meal.id} className=" my-2">{meal.name}</li>
+        <MealItem key={meal.id} meal={meal} />
       ))}
     </ul>
   );
