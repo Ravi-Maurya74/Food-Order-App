@@ -1,11 +1,14 @@
 import Header from "./components/Header";
 import Meals from "./components/Meals";
+import { CartContextProvider } from "./store/CartContext";
 
 function App() {
   return (
     <div className=" mx-16 my-8">
-      <Header />
-      <Meals />
+      <CartContextProvider>
+        <Header />
+        <Meals />
+      </CartContextProvider>
     </div>
   );
 }
