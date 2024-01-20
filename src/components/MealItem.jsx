@@ -1,4 +1,5 @@
-import { currencyFormatter } from "../util/formatting";
+import { currencyFormatter } from "../util/formatting"; 
+import Button from "./UI/Button";
 
 export default function MealItem({ meal }) {
   return (
@@ -13,9 +14,7 @@ export default function MealItem({ meal }) {
           <p>{meal.description}</p>
         </div>
         <p>
-          <button className=" bg-white text-black p-1 text-sm rounded-sm">
-            Add to cart.
-          </button>
+          <Button>Add to Cart</Button>
         </p>
       </article>
     </li>
