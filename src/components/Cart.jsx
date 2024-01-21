@@ -11,6 +11,10 @@ export default function Cart() {
   const cartTotal = cartCtx.items.reduce((total, item) => {
     return total + item.quantity * item.price;
   }, 0);
+
+  function handleCloseCart() {
+    userProgressCtx.hideCart();
+  }
   return (
     <Modal open={userProgressCtx.progress==='cart'}>
       <h2 className=" text-xl font-bold">Your Cart.</h2>
@@ -26,18 +30,14 @@ export default function Cart() {
                   <span>{item.price}</span>
                 </div>
               </div>
-              <div>
-                <button>-</button>
-                <button>+</button>
-              </div>
             </li>
           );
         })}
       </ul>
       <p className=" text-right">{currencyFormatter.format(cartTotal)}</p>
       <p className=" text-right">
-        <Button textOnly classname=" text-black">Close</Button>
-        <Button>Go to Checkout.</Button>
+        <Button textOnly classname=" text-black" onClick={handleCloseCart}>Close</Button>
+        <Button onClick={handleCloseCart}>Go to Checkout.</Button>
       </p>
     </Modal>
   );
