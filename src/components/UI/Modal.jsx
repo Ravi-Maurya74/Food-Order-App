@@ -11,7 +11,7 @@ export default function Modal({ children, open,...props }) {
     }
   }, [open]);
   return createPortal(
-    <dialog ref={dialog} {...props}>{children}</dialog>,
+    <dialog ref={dialog} {...props} className=" bg-rose-200 py-4 px-2 rounded-md w-1/3">{children}</dialog>,
     document.getElementById("modal")
   );
 }
