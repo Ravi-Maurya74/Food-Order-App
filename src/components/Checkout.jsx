@@ -16,12 +16,32 @@ export default function Checkout() {
   function handleClose(){
     userProgressCtx.hideCheckout();
   }
+  function handleSubmit(event){
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const customerData = Object.fromEntries(formData.entries());
+    fetch('https://react-http-6f0a4-default-rtdb.firebaseio.com/orders.json',{
+      method: 'POST',
+      body: JSON.stringify({
+        order:{
+          customer: customerData,
+          items: cartCtx.items
+        }
+      })
+    })
+    .then(response => {
+      if(response.ok){
+        return response.json();
+      }
+      throw new Error('Something went wrong!');
+    })
+  }
   return (
     <Modal open={userProgressCtx.progress==='checkout'}>
       <form action="">
         <h2>Checkout</h2>
         <p>Total Amount: {currencyFormatter.format(cartTotal)} </p>
-        <Input label="Full Name" id="full-name" type="text" />
+        <Input label="Full Name" id="name" type="text" />
         <Input label="E-Mail Address" id="email" type="email" />
         <Input label="Street Address" id="street" type="text" />
         <div>
